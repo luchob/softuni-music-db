@@ -23,7 +23,7 @@ public class MusicDBUserService implements UserDetailsService {
 
   @Override
   public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-    UserEntity userEntity = userRepository.
+    bg.softuni.musicdb.model.entities.UserEntity userEntity = userRepository.
         findByName(username).
         orElseThrow(() -> new UsernameNotFoundException("User with name " + username + " was not found!"));
 
