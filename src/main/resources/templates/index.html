@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en" >
+<head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>My Music DB Application</title>
+    <link rel="stylesheet" href="/css/reset-css.css"/>
+    <link rel="stylesheet" href="/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="/css/style.css"/>
+    <script src="/js/jquery-3.3.1.min.js"></script>
+    <script src="/js/bootstrap.min.js"></script>
+</head>
+<body>
+<header>
+     <nav class="navbar navbar-expand-lg bg-nav rounded">
+        <a class="nav-link" href="/">
+            <img src="/img/headphones.png" width="40px" alt="HeadPhones picture">
+        </a>
+        
+            <div class="dropdown">
+                <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    Admin Panel
+                </button>
+                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                    <a class="dropdown-item" href="/statistics">Statistics</a>
+                    <a class="dropdown-item" href="/articles/add">Add article</a>
+                    <a class="dropdown-item" href="#">Something else here</a>
+                </div>
+            </div>
+      
+
+        <div class="collapse navbar-collapse d-flex justify-content-end" id="navbarNav">
+            <ul class="navbar-nav row">
+                
+                    <li class="nav-item col-md-4">
+                        <a class="nav-link text-white active h5" href="/users/login">Login</a>
+                    </li>
+                    <li class="nav-item col-md-4">
+                        <a class="nav-link text-white active h5" href="/users/register">Register</a>
+                    </li>
+               
+                    <li class="nav-item ">
+                        <a class="nav-link text-white active h5" href="/albums/add">Add Album</a>
+                    </li>
+                    <li class="nav-item ">
+                        <a class="nav-link text-white active h5" href="/articles/all">All articles</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-white active h5" href="/articles/all">All articles</a>
+                    </li>
+                
+            </ul>
+        </div>
+    </nav>
+</header>
+<main class="p-5 align-content-center bg-blur">
+    <h1 class="text-light border-left pl-2">Welcome to</h1>
+    <h1 class="text-light border-left pl-2">My Music DB Application!</h1>
+    <div class="d-flex justify-content-center">
+        <div class="my-index-div w-50">
+            <iframe class="w-100 h-100" src="https://www.youtube.com/embed/Q93n3dvaaTI?rel=0" title="YouTube video"
+                    allowfullscreen></iframe>
+        </div>
+    </div>
+</main>
+<footer class="footer bg-blur">
+    <div class="container-fluid text-center">
+        <div class="h5 text-white">
+            &copy;SoftUni Spring Team 2021. All rights reserved.
+        </div>
+    </div>
+</footer>
+</body>
+</html>
