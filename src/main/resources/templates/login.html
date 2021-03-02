@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html lang="en" >
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
@@ -14,7 +15,7 @@
 <header>
      <nav class="navbar navbar-expand-lg bg-nav rounded">
         <a class="nav-link" href="/">
-            <img src="/img/headphones.png" width="40px" alt="HeadPhones picture">
+            <img src="/images/headphones.png" width="40px" alt="HeadPhones picture">
         </a>
         
             <div class="dropdown">
@@ -57,14 +58,14 @@
     <h1 class="text-light    border-bottom mb-5">Login</h1>
     <div class="d-flex justify-content-center">
         <div class="row g-3 align-items-center">
-            <img alt="Metallica image" src="/img/metallica.jpg" class="w-50 rounded">
+            <img alt="Metallica image" src="/images/metallica.jpg" class="w-50 rounded">
         </div>
         <div class="row g-3 align-items-center">
             <div class="alert alert-danger" role="alert">
                 This username and password combination does not exist.
             </div>
             <form
-                action="/"
+                th:action="@{/users/login}"
                 method="POST">
                 <!--User name-->
                 <div>

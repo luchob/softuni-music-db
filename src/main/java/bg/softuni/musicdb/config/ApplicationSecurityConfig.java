@@ -25,11 +25,10 @@ public class ApplicationSecurityConfig extends WebSecurityConfigurerAdapter {
   @Override
   protected void configure(HttpSecurity http) throws Exception {
 
-    //TODO: Lucho PathRequest.toStaticResources().atCommonLocations() <- what is the problem
     http.
         authorizeRequests().
           // allow access to static resources to anyone
-          antMatchers("/js/**", "/css/**", "/img/**").permitAll().
+          requestMatchers(PathRequest.toStaticResources().atCommonLocations()).permitAll().
           // allow access to index, user login and registration to anyone
           antMatchers("/", "/users/login", "/users/register").permitAll().
           // protect all other pages
