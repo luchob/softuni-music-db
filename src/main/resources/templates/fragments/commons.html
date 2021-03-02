@@ -22,7 +22,7 @@
       <img src="/images/headphones.png" width="40px" alt="HeadPhones picture">
     </a>
 
-    <div class="dropdown">
+    <div sec:authorize="hasRole('ROLE_ADMIN')" class="dropdown">
       <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton"
               data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
         Admin Panel
@@ -39,10 +39,17 @@
       <ul class="navbar-nav row">
 
         <li class="nav-item col-md-4">
-          <a class="nav-link text-white active h5" href="/users/login">Login</a>
+          <a class="nav-link text-white active h5"
+             sec:authorize="!isAuthenticated()"
+             th:href="@{/users/login}">Login
+          </a>
         </li>
         <li class="nav-item col-md-4">
-          <a class="nav-link text-white active h5" href="/users/register">Register</a>
+          <a class="nav-link text-white active h5"
+             sec:authorize="!isAuthenticated()"
+             th:href="@{/users/register}">
+            Register
+          </a>
         </li>
 
         <li class="nav-item ">
