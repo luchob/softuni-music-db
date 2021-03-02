@@ -46,7 +46,7 @@ public class ApplicationSecurityConfig extends WebSecurityConfigurerAdapter {
             // on login success redirect here
             defaultSuccessUrl("/home").
             // on login failure redirect here
-            failureForwardUrl("/users/login-error");//todo - check and explain what is wrong
+            failureForwardUrl("/users/login-error");
   }
 
   @Override
