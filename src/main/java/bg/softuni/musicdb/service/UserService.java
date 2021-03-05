@@ -8,4 +8,5 @@ public interface UserService {
 
   void registerAndLoginUser(UserRegistrationServiceModel serviceModel);
 
+  boolean userNameExists(String username);
 }

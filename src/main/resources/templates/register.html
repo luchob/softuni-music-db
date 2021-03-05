@@ -35,9 +35,8 @@
                           <small id="usernameError"
                                class="invalid-feedback text-light form-text bg-danger rounded">Username length must be more than 3 characters</small>
 
-                        <!-- TODO: user already exists -->
-                        <!--                        <small id="usernameUniqueError"-->
-<!--                               class="text-light form-text bg-danger rounded">Username is already occupied</small>-->
+                        <small th:if="${userExistsError}" id="usernameUniqueError"
+                               class="text-light form-text bg-danger rounded">Username is already occupied</small>
 
                     </div>
                 </div>
