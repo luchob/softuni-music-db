@@ -38,30 +38,32 @@
     <div class="collapse navbar-collapse d-flex justify-content-end" id="navbarNav">
       <ul class="navbar-nav row">
 
-        <li class="nav-item col-md-4">
+        <li class="nav-item">
           <a class="nav-link text-white active h5"
              sec:authorize="!isAuthenticated()"
              th:href="@{/users/login}">Login
           </a>
         </li>
-        <li class="nav-item col-md-4">
+        <li class="nav-item">
           <a class="nav-link text-white active h5"
              sec:authorize="!isAuthenticated()"
              th:href="@{/users/register}">
             Register
           </a>
         </li>
-
-        <li class="nav-item ">
+        <li sec:authorize="isAuthenticated()" class="nav-item ">
           <a class="nav-link text-white active h5" href="/albums/add">Add Album</a>
         </li>
-        <li class="nav-item ">
+        <li sec:authorize="isAuthenticated()" class="nav-item ">
           <a class="nav-link text-white active h5" href="/articles/all">All articles</a>
         </li>
-        <li class="nav-item">
-          <a class="nav-link text-white active h5" href="/articles/all">All articles</a>
+        <li sec:authorize="isAuthenticated()" class="nav-item">
+          <form th:action="@{/logout}" method="POST">
+            <button type="submit" class="nav-link">
+              Logout
+            </button>
+          </form>
         </li>
-
       </ul>
     </div>
   </nav>
