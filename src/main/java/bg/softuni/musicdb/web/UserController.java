@@ -3,14 +3,17 @@ package bg.softuni.musicdb.web;
 import bg.softuni.musicdb.model.binding.UserRegistrationBindingModel;
 import bg.softuni.musicdb.model.service.UserRegistrationServiceModel;
 import bg.softuni.musicdb.service.UserService;
+import javax.validation.Valid;
 import org.modelmapper.ModelMapper;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 import org.springframework.stereotype.Controller;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 @Controller
 @RequestMapping("/users")
@@ -25,6 +28,11 @@ public class UserController {
     this.userService = userService;
   }
 
+  @ModelAttribute("registrationBindingModel")
+  public UserRegistrationBindingModel createBindingModel() {
+    return new UserRegistrationBindingModel();
+  }
+
   @GetMapping("/login")
   public String login() {
     return "login";
@@ -36,7 +44,19 @@ public class UserController {
   }
 
   @PostMapping("/register")
-  public String registerAndLoginUser(UserRegistrationBindingModel registrationBindingModel) {
+  public String registerAndLoginUser(
+      @Valid UserRegistrationBindingModel registrationBindingModel,
+      BindingResult bindingResult,
+      RedirectAttributes redirectAttributes) {
+
+    if (bindingResult.hasErrors()) {
+      redirectAttributes.addFlashAttribute("registrationBindingModel", registrationBindingModel);
+      redirectAttributes.addFlashAttribute(
+          "org.springframework.validation.BindingResult.registrationBindingModel", bindingResult);
+
+      return "redirect:/users/register";
+    }
+
     UserRegistrationServiceModel userServiceModel = modelMapper
         .map(registrationBindingModel, UserRegistrationServiceModel.class);
     //TODO: Validation

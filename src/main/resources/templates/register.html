@@ -12,11 +12,12 @@
     <h1 class="text-light border-bottom">Register</h1>
     <div class="d-flex justify-content-center ">
         <div class="row g-3 align-items-center">
-            <img alt="Picture of Madonna" src="/images/madonna.jpg" class="w-50 rounded">
+            <img alt="Picture of Madonna" th:src="@{/images/madonna.jpg}" class="w-50 rounded">
         </div>
         <div class="row g-3">
             <form
                 th:action="@{/users/register}"
+                th:object="${registrationBindingModel}"
                 method="POST">
                 <!-- Username -->
                 <div>
@@ -25,14 +26,17 @@
                     </div>
                     <div class="col-auto">
                         <input name="username"
+                               th:value="*{username}"
                                type="text"
                                id="inputUsername"
                                class="form-control"
                                aria-describedby="usernameHelpInline">
                           <small id="usernameError"
                                class="invalid-feedback text-light form-text bg-danger rounded">Username length must be more than 3 characters</small>
-                        <small id="usernameUniqueError"
-                               class="text-light form-text bg-danger rounded">Username is already occupied</small>
+
+                        <!-- TODO: user already exists -->
+                        <!--                        <small id="usernameUniqueError"-->
+<!--                               class="text-light form-text bg-danger rounded">Username is already occupied</small>-->
 
                     </div>
                 </div>
