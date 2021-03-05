@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>My Music DB Application</title>
+    <link rel="stylesheet" href="/css/reset-css.css"/>
+    <link rel="stylesheet" href="/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="/css/style.css"/>
+    <script src="/js/jquery-3.3.1.min.js"></script>
+    <script src="/js/bootstrap.min.js"></script>
+</head>
+<body>
+<header>
+    <nav class="navbar navbar-expand-lg bg-nav rounded">
+        <a class="nav-link" href="/">
+            <img src="/img/headphones.png" width="40px" alt="HeadPhones picture">
+        </a>
+            <div class="dropdown">
+                <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    Admin Panel
+                </button>
+                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                    <a class="dropdown-item" href="/">Statistics</a>
+                    <a class="dropdown-item" href="/">Add article</a>
+                    <a class="dropdown-item" href="/">Something else here</a>
+                </div>
+            </div>
+        <div class="collapse navbar-collapse d-flex justify-content-end" id="navbarNav">
+            <ul class="navbar-nav row">
+                    <li class="nav-item col-md-4">
+                        <a class="nav-link text-white active h5" href="/">Login</a>
+                    </li>
+                    <li class="nav-item col-md-4">
+                        <a class="nav-link text-white active h5" href="/">Register</a>
+                    </li>
+                    <li class="nav-item ">
+                        <a class="nav-link text-white active h5" href="/">Add Album</a>
+                    </li>
+                    <li class="nav-item ">
+                        <a class="nav-link text-white active h5" href="/">All articles</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-white active h5" href="/">Logout</a>
+                    </li>
+            </ul>
+        </div>
+    </nav>
+</header>
+<main class="p-5 align-content-center bg-blur">
+    <div class="container" >
+        <div style="'background-image:url(' + article.imageUrl + '); background-repeat: no-repeat, repeat; background-size: cover;'"  class="jumbotron p-3 p-md-5 text-white rounded">
+            <div class="col-md-6 px-0">
+                <h1 class="display-4 font-italic font-weight-bold">Title of the pinned article</h1>
+                <p class="lead mb-0"><a href="#" class="text-white font-weight-bold">Continue reading...</a></p>
+            </div>
+        </div>
+    </div>
+    <div role="main" class="container text-light">
+        <div class="row">
+            <div class="col-md-8 blog-main">
+                <h3 class="pb-3 mb-4 font-italic border-bottom">
+                    New Story
+                </h3>
+
+                <div class="blog-post">
+                    <h2 class="blog-post-title">Title</h2>
+                    <p class="blog-post-meta">AddedOn by Author name</p>
+
+                    <p>Content ... </p>
+                </div><!-- /.blog-post -->
+
+            </div><!-- /.blog-main -->
+
+            <aside class="col-md-4 blog-sidebar">
+                <div class="p-3 mb-3 bg-light rounded text-dark">
+                    <h4 class="font-italic">About</h4>
+                    <p class="mb-0">Etiam porta <em>sem malesuada magna</em> mollis euismod. Cras mattis consectetur
+                        purus sit amet fermentum. Aenean lacinia bibendum nulla sed consectetur.</p>
+                </div>
+
+                <div class="p-3">
+                    <h4 class="font-italic">Archives</h4>
+                    <ol class="list-unstyled mb-0">
+                        <li><a href="#">March 2014</a></li>
+                        <li><a href="#">February 2014</a></li>
+                        <li><a href="#">January 2014</a></li>
+                        <li><a href="#">December 2013</a></li>
+                        <li><a href="#">November 2013</a></li>
+                        <li><a href="#">October 2013</a></li>
+                        <li><a href="#">September 2013</a></li>
+                        <li><a href="#">August 2013</a></li>
+                        <li><a href="#">July 2013</a></li>
+                        <li><a href="#">June 2013</a></li>
+                        <li><a href="#">May 2013</a></li>
+                        <li><a href="#">April 2013</a></li>
+                    </ol>
+                </div>
+
+            </aside><!-- /.blog-sidebar -->
+        </div><!-- /.row -->
+    </div>
+</main>
+<footer class="footer bg-blur">
+    <div class="container-fluid text-center">
+        <div class="h5 text-white">
+            &copy;SoftUni Spring Team 2021. All rights reserved.
+        </div>
+    </div>
+</footer>
+</body>
+</html>
