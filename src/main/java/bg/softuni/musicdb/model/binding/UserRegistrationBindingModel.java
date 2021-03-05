@@ -2,8 +2,6 @@ package bg.softuni.musicdb.model.binding;
 
 import bg.softuni.musicdb.model.validators.FieldMatch;
 import javax.validation.constraints.Email;
-import javax.validation.constraints.Max;
-import javax.validation.constraints.Min;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Size;
 
@@ -14,13 +12,13 @@ import javax.validation.constraints.Size;
 public class UserRegistrationBindingModel {
 
   @NotEmpty
-  @Min(3)
+  @Size(min = 3)
   private String username;
   @NotEmpty
   @Email
   private String email;
   @NotEmpty
-  @Min(3)
+  @Size(min = 3)
   private String fullname;
   @NotEmpty
   @Size(min = 5, max = 20)

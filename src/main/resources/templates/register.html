@@ -27,6 +27,7 @@
                     <div class="col-auto">
                         <input name="username"
                                th:value="*{username}"
+                               th:errorclass="is-invalid"
                                type="text"
                                id="inputUsername"
                                class="form-control"
@@ -49,6 +50,8 @@
                     </div>
                     <div class="col-auto">
                         <input name="fullname"
+                               th:value="*{fullname}"
+                               th:errorclass="is-invalid"
                                type="text"
                                id="inputFullName"
                                class="form-control"
@@ -66,6 +69,8 @@
                     </div>
                     <div class="col-auto">
                         <input name="email"
+                               th:value="*{email}"
+                               th:errorclass="is-invalid"
                                type="text"
                                id="inputEmail"
                                class="form-control"
@@ -83,6 +88,7 @@
                     </div>
                     <div class="col-auto">
                         <input name="password"
+                               th:errorclass="is-invalid"
                                type="password"
                                id="inputPassword"
                                class="form-control"
@@ -102,6 +108,7 @@
                     </div>
                     <div class="col-auto">
                         <input name="confirmPassword"
+                               th:errorclass="is-invalid"
                                type="password"
                                id="inputConfirmPassword"
                                class="form-control"

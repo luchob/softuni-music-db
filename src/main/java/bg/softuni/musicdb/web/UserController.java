@@ -57,6 +57,8 @@ public class UserController {
       return "redirect:/users/register";
     }
 
+    //todo - validate if user name exists
+
     UserRegistrationServiceModel userServiceModel = modelMapper
         .map(registrationBindingModel, UserRegistrationServiceModel.class);
     //TODO: Validation
