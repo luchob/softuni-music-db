@@ -22,6 +22,7 @@ public class AlbumRestController {
     this.modelMapper = modelMapper;
   }
 
+  // TODO: service
   @GetMapping("/api")
   public List<AlbumBindingModel> findAll() {
     return albumRepository.
