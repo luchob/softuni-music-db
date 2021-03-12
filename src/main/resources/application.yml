@@ -15,3 +15,6 @@ spring:
     properties:
       hibernate:
         format_sql: true
+carousel:
+  images: aerosmith.jpeg, iron.jpeg, madonna.jpg, metallica.jpg, queen.jpg, rolling.jpeg
+  refresh-cron: "0 */1 * * * *"
