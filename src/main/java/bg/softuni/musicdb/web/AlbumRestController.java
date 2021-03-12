@@ -1,6 +1,6 @@
 package bg.softuni.musicdb.web;
 
-import bg.softuni.musicdb.model.binding.AlbumBindingModel;
+import bg.softuni.musicdb.model.view.AlbumViewModel;
 import bg.softuni.musicdb.repository.AlbumRepository;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -22,13 +22,12 @@ public class AlbumRestController {
     this.modelMapper = modelMapper;
   }
 
-  // TODO: service
   @GetMapping("/api")
-  public List<AlbumBindingModel> findAll() {
+  public List<AlbumViewModel> findAll() {
     return albumRepository.
         findAll().
         stream().
-        map(ae -> modelMapper.map(ae, AlbumBindingModel.class)).
+        map(ae -> modelMapper.map(ae, AlbumViewModel.class)).
         collect(Collectors.toList());
   }
 }
