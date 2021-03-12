@@ -7,10 +7,14 @@
     max-height: 100%;
 }
 
-.my-register-div {
-    min-height: 85.5vh;
-    max-height: 100%;
+main {
+    min-height: 90.2vh;
 }
+
+/*.my-register-div {*/
+/*    min-height: 85.5vh;*/
+/*    max-height: 100%;*/
+/*}*/
 
 footer {
     position: absolute;
