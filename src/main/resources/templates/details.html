@@ -1,84 +1,45 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8"/>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <title>My Music DB Application</title>
-    <link rel="stylesheet" href="/css/reset-css.css"/>
-    <link rel="stylesheet" href="/css/bootstrap.min.css"/>
-    <link rel="stylesheet" href="/css/style.css"/>
-    <script src="/js/jquery-3.3.1.min.js"></script>
-    <script src="/js/bootstrap.min.js"></script>
-</head>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="fragments/commons :: head"></head>
+
 <body>
-<header>
-    <nav class="navbar navbar-expand-lg bg-nav rounded">
-        <a class="nav-link" href="/">
-            <img src="/img/headphones.png" width="40px" alt="HeadPhones picture">
-        </a>
-            <div class="dropdown">
-                <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    Admin Panel
-                </button>
-                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                    <a class="dropdown-item" href="/">Statistics</a>
-                    <a class="dropdown-item" href="/">Add article</a>
-                    <a class="dropdown-item" href="/">Something else here</a>
-                </div>
-            </div>
-        <div class="collapse navbar-collapse d-flex justify-content-end" id="navbarNav">
-            <ul class="navbar-nav row">
-                    <li class="nav-item col-md-4">
-                        <a class="nav-link text-white active h5" href="/">Login</a>
-                    </li>
-                    <li class="nav-item col-md-4">
-                        <a class="nav-link text-white active h5" href="/">Register</a>
-                    </li>
-                    <li class="nav-item ">
-                        <a class="nav-link text-white active h5" href="/">Add Album</a>
-                    </li>
-                    <li class="nav-item ">
-                        <a class="nav-link text-white active h5" href="/">All articles</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link text-white active h5" href="/">Logout</a>
-                    </li>
-            </ul>
-        </div>
-    </nav>
-</header>
+
+<header th:replace="fragments/commons :: navigation"></header>
+
 <main class="p-5 align-content-center bg-blur">
     <div class="justify-content-center">
         <h1 class="text-light border-left border-white pl-4">Album Details</h1>
     </div>
-    <div class="row rounded mb-5 mt-3">
-        <div class="col-md-6 bg-blur text-light rounded ">
+    <div th:object="${album}" class="row rounded mb-5 mt-3">
+        <div  class="col-md-6 bg-blur text-light rounded ">
             <dl class="row pt-3">
                 <dt class="col-sm-3">Name</dt>
-                <dd class="col-sm-9" >Name</dd>
+                <dd class="col-sm-9" th:text="*{name}">Name</dd>
 
                 <dt class="col-sm-3">Description</dt>
-                <dd class="col-sm-9">Description
+                <dd class="col-sm-9" th:text="*{description}">Description
                 </dd>
 
                 <dt class="col-sm-3">Artist</dt>
-                <dd class="col-sm-9">Artist
+                <dd class="col-sm-9" th:text="*{artist}">Artist
                 </dd>
 
                 <dt class="col-sm-3">Release Date</dt>
-                <dd class="col-sm-9">Release Date
+                <dd class="col-sm-9" th:text="*{releaseDate}">Release Date
                 </dd>
 
                 <dt class="col-sm-3">Price & Copies</dt>
                 <dd class="col-sm-9">
                     <dl class="row">
                         <dt class="col-sm-4">Price</dt>
-                        <dd class="col-sm-8">Price
+                        <dd class="col-sm-8" th:text="*{price}">Price
                         </dd>
                     </dl>
                     <dl class="row">
                         <dt class="col-sm-4">Copies</dt>
-                        <dd class="col-sm-8">Copies
+                        <dd class="col-sm-8" th:text="*{copies}">Copies
                         </dd>
                     </dl>
                 </dd>
@@ -86,7 +47,7 @@
         </div>
         <div class="col-md-6 bg-transparent rounded">
             <div class="rounded embed-responsive embed-responsive-16by9">
-                <iframe class="embed-responsive-item" src="'https://www.youtube.com/embed/' + 'album video url'"
+                <iframe class="embed-responsive-item" th:src="'https://www.youtube.com/embed/' + *{videoUrl}"
                         allowfullscreen></iframe>
             </div>
         </div>
@@ -141,12 +102,6 @@
         </div>
     </div>
 </main>
-<footer class="footer bg-blur">
-    <div class="container-fluid text-center">
-        <div class="h5 text-white">
-            &copy;SoftUni Spring Team 2021. All rights reserved.
-        </div>
-    </div>
-</footer>
+<footer th:replace="fragments/commons :: footer"></footer>
 </body>
 </html>

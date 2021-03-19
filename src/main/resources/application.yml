@@ -1,16 +1,25 @@
 spring:
   datasource:
     driverClassName: com.mysql.cj.jdbc.Driver
-    password: ''
-    url: jdbc:mysql://localhost:3306/musicdb?allowPublicKeyRetrieval=true&useSSL=false&createDatabaseIfNotExist=true
+    password: 12345
+    url: jdbc:mysql://localhost:3306/softuni_musicdb_w?allowPublicKeyRetrieval=true&useSSL=false&createDatabaseIfNotExist=true
     username: root
+  servlet:
+    multipart:
+      max-file-size: 1MB
+      max-request-size: 5MB
+  mvc:
+    hiddenmethod:
+      filter:
+        enabled: true
+
   jpa:
-    #For MySQL 8
-    #database-platform: org.hibernate.dialect.MySQL8Dialect
+    #    For MySQL 8
+    database-platform: org.hibernate.dialect.MySQL8Dialect
     #For MySQL 5
-    database-platform: org.hibernate.dialect.MySQL5InnoDBDialect
+    #    database-platform: org.hibernate.dialect.MySQL5InnoDBDialect
     hibernate:
-      ddl-auto: create-drop
+      ddl-auto: update
     open-in-view: false
     properties:
       hibernate:

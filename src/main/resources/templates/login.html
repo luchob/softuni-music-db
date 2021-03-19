@@ -30,6 +30,7 @@
                         <input type="text"
                                name="username"
                                th:value="${username}"
+                               required minlength="5" maxlength="20"
                                id="inputUsername"
                                class="form-control"
                                aria-describedby="usernameHelpInline">
@@ -45,6 +46,7 @@
                     <div class="col-auto">
                         <input type="password"
                                name="password"
+                               required minlength="5" maxlength="20"
                                id="inputPassword" class="form-control"
                                aria-describedby="passwordHelpInline">
                     </div>

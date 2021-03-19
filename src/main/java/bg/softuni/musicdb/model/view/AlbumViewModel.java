@@ -14,18 +14,9 @@ public class AlbumViewModel {
   private BigDecimal price;
   private Instant releaseDate;
   private Genre genre;
+  private String artist;
 
-  public AlbumViewModel(String name, String imageUrl, String videoUrl, String description,
-      Integer copies, BigDecimal price, Instant releaseDate,
-      Genre genre) {
-    this.name = name;
-    this.imageUrl = imageUrl;
-    this.videoUrl = videoUrl;
-    this.description = description;
-    this.copies = copies;
-    this.price = price;
-    this.releaseDate = releaseDate;
-    this.genre = genre;
+  public AlbumViewModel() {
   }
 
   public String getName() {
@@ -97,6 +88,15 @@ public class AlbumViewModel {
 
   public AlbumViewModel setGenre(Genre genre) {
     this.genre = genre;
+    return this;
+  }
+
+  public String getArtist() {
+    return artist;
+  }
+
+  public AlbumViewModel setArtist(String artist) {
+    this.artist = artist;
     return this;
   }
 }
