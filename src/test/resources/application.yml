@@ -1,0 +1,27 @@
+spring:
+  #This is the default in-memory credentials, we can change them if we want
+  #    datasource:
+  #        url:
+  #            jdbc:h2:mem:testdb
+  #        driver-class-name:
+  #            org.h2.Driver
+  #        username: sa
+  #        password: ''
+  jpa:
+    #For H2 Database
+    database-platform: org.hibernate.dialect.H2Dialect
+    hibernate:
+      ddl-auto: create-drop
+    open-in-view: false
+  servlet:
+    multipart:
+      max-file-size: 1MB
+      max-request-size: 5MB
+  mvc:
+    hiddenmethod:
+      filter:
+        enabled: true
+
+carousel:
+  images: aerosmith.jpeg, iron.jpeg, madonna.jpg, metallica.jpg, queen.jpg, rolling.jpeg
+  refresh-cron: "0 */10 * * * *"

@@ -30,7 +30,6 @@ public class MusicDBUserServiceTest {
   public void setUp() {
     serviceToTest = new MusicDBUserService(mockUserRepository);
   }
-
   @Test
   void testUserNotFound() {
     Assertions.assertThrows(
