@@ -1,8 +1,8 @@
 spring:
   datasource:
     driverClassName: com.mysql.cj.jdbc.Driver
-    password: 12345
-    url: jdbc:mysql://localhost:3306/softuni_musicdb_w?allowPublicKeyRetrieval=true&useSSL=false&createDatabaseIfNotExist=true
+    password: "${MYSQLPASS:}"
+    url: "jdbc:mysql://${MYSQLHOST:localhost}:3306/softuni_musicdb_w?allowPublicKeyRetrieval=true&useSSL=false&createDatabaseIfNotExist=true"
     username: root
   servlet:
     multipart:
@@ -15,9 +15,9 @@ spring:
 
   jpa:
     #    For MySQL 8
-    database-platform: org.hibernate.dialect.MySQL8Dialect
+    #database-platform: org.hibernate.dialect.MySQL8Dialect
     #For MySQL 5
-    #    database-platform: org.hibernate.dialect.MySQL5InnoDBDialect
+    database-platform: org.hibernate.dialect.MySQL5InnoDBDialect
     hibernate:
       ddl-auto: update
     open-in-view: false
