@@ -8,9 +8,3 @@ services:
     environment:
       - MYSQL_ALLOW_EMPTY_PASSWORD="yes"
       - MYSQL_DATABASE=spring_data_lab_db
-  musicdb:
-    image: luchob/mymusicdb:v1
-    ports:
-      - "8080:8080"
-    environment:
-      - MYSQLHOST=db
