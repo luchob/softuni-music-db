@@ -1,12 +1,13 @@
 package bg.softuni.musicdb.model.binding;
 
 import bg.softuni.musicdb.model.entities.enums.Genre;
-import org.springframework.format.annotation.DateTimeFormat;
-
-import javax.validation.constraints.*;
 import java.math.BigDecimal;
-import java.time.Instant;
 import java.time.LocalDate;
+import javax.validation.constraints.DecimalMin;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
+import org.springframework.format.annotation.DateTimeFormat;
 
 public class AlbumAddBindingModel {
   private Genre genre;

@@ -9,6 +9,8 @@ import bg.softuni.musicdb.repository.AlbumRepository;
 import bg.softuni.musicdb.repository.UserRepository;
 import bg.softuni.musicdb.service.AlbumService;
 import bg.softuni.musicdb.service.ArtistService;
+import java.util.List;
+import java.util.stream.Collectors;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
 
@@ -49,13 +51,24 @@ public class AlbumServiceImpl implements AlbumService {
     public AlbumViewModel findById(Long id) {
         return albumRepository
                 .findById(id)
-                .map(albumEntity -> {
-                    AlbumViewModel albumViewModel = modelMapper
-                            .map(albumEntity, AlbumViewModel.class);
-                    albumViewModel.setArtist(albumEntity.getArtistEntity().getName());
-                    return albumViewModel;
-                })
+                .map(this::map)
                 .orElseThrow(IllegalArgumentException::new);
+    }
+
+    @Override
+    public List<AlbumViewModel> findAll() {
+        return albumRepository.
+            findAll().
+            stream().
+            map(this::map).
+            collect(Collectors.toList());
+    }
+
+    private AlbumViewModel map(AlbumEntity albumEntity) {
+        AlbumViewModel albumViewModel = modelMapper
+            .map(albumEntity, AlbumViewModel.class);
+        albumViewModel.setArtist(albumEntity.getArtistEntity().getName());
+        return albumViewModel;
     }
 
     @Override

@@ -5,16 +5,12 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.view;
 
-import bg.softuni.musicdb.model.entities.AlbumEntity;
-import bg.softuni.musicdb.model.entities.ArtistEntity;
-import bg.softuni.musicdb.model.entities.UserEntity;
 import bg.softuni.musicdb.model.entities.enums.Genre;
 import bg.softuni.musicdb.repository.AlbumRepository;
 import bg.softuni.musicdb.repository.ArtistRepository;
+import bg.softuni.musicdb.repository.LogRepository;
 import bg.softuni.musicdb.repository.UserRepository;
-import java.math.BigDecimal;
-import java.time.LocalDate;
-import java.time.ZoneId;
+import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -44,10 +40,26 @@ public class AlbumControllerTest {
   private ArtistRepository artistRepository;
   @Autowired
   private AlbumRepository albumRepository;
+  @Autowired
+  private LogRepository logRepository;
+
+  private TestData testData;
 
   @BeforeEach
   public void setup() {
-    this.init();
+    testData = new TestData(
+        userRepository,
+        artistRepository,
+        albumRepository,
+        logRepository
+    );
+    testData.init();
+    testAlbumId = testData.getTestAlbumId();
+  }
+
+  @AfterEach
+  public void tearDown() {
+    testData.tearDown();
   }
 
   @Test
@@ -78,33 +90,5 @@ public class AlbumControllerTest {
         andExpect(status().is3xxRedirection());
 
     Assertions.assertEquals(2, albumRepository.count());
-    //todo: may verify the created album properties
-  }
-
-  private void init() {
-    ArtistEntity artistEntity = new ArtistEntity();
-    artistEntity.setName("METALLICA");
-    artistEntity.setCareerInformation("Some info about metallica");
-    artistEntity = artistRepository.save(artistEntity);
-
-    UserEntity userEntity = new UserEntity();
-    userEntity.setUsername("pesho").setPassword("xyz").setFullname("petar petrov");
-    userEntity = userRepository.save(userEntity);
-
-    AlbumEntity albumEntity = new AlbumEntity();
-    albumEntity.
-        setName("JUSTICE FOR ALL").
-        setImageUrl("https://upload.wikimedia.org/wikipedia/en/b/bd/Metallica_-_...And_Justice_for_All_cover.jpg").
-        setVideoUrl("_fKAsvJrFes").
-        setDescription("Sample description").
-        setCopies(11).
-        setPrice(BigDecimal.TEN).
-        setReleaseDate(LocalDate.of(1988, 3, 3).atStartOfDay(ZoneId.systemDefault()).toInstant()).
-        setGenre(Genre.METAL).
-        setArtistEntity(artistEntity).
-        setUserEntity(userEntity);
-
-    albumEntity = albumRepository.save(albumEntity);
-    testAlbumId = albumEntity.getId();
   }
 }
