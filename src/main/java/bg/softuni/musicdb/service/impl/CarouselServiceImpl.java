@@ -1,8 +1,8 @@
 package bg.softuni.musicdb.service.impl;
 
 import bg.softuni.musicdb.service.CarouselService;
+import bg.softuni.musicdb.service.ImageShuffler;
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 import javax.annotation.PostConstruct;
 import org.slf4j.Logger;
@@ -14,11 +14,14 @@ import org.springframework.stereotype.Service;
 @Service
 public class CarouselServiceImpl implements CarouselService {
 
+  private final ImageShuffler imageShuffler;
   private Logger LOGGER = LoggerFactory.getLogger(CarouselServiceImpl.class);
 
   private List<String> images = new ArrayList<>();
 
-  public CarouselServiceImpl(@Value("${carousel.images}") List<String> images) {
+  public CarouselServiceImpl(@Value("${carousel.images}") List<String> images,
+      ImageShuffler imageShuffler) {
+    this.imageShuffler = imageShuffler;
     this.images.addAll(images);
   }
 
@@ -41,12 +44,12 @@ public class CarouselServiceImpl implements CarouselService {
 
   @Override
   public String thirdImage() {
-    return images.get(3);
+    return images.get(2);
   }
 
   @Scheduled(cron = "${carousel.refresh-cron}")
   public void refresh() {
     LOGGER.info("Shuffling images...");
-    Collections.shuffle(images);
+    imageShuffler.shuffle(images);
   }
 }
