@@ -6,6 +6,7 @@ import java.time.Instant;
 
 public class AlbumViewModel {
 
+  private Long id;
   private String name;
   private String imageUrl;
   private String videoUrl;
@@ -17,6 +18,15 @@ public class AlbumViewModel {
   private String artist;
 
   public AlbumViewModel() {
+  }
+
+  public Long getId() {
+    return id;
+  }
+
+  public AlbumViewModel setId(Long id) {
+    this.id = id;
+    return this;
   }
 
   public String getName() {
