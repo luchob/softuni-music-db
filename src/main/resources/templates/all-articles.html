@@ -10,9 +10,13 @@
 
 <main class="p-5 align-content-center bg-blur">
     <div class="container">
-        <div id="all-articles-jumbotron" class="jumbotron p-3 p-md-5 text-white rounded">
+        <div
+            th:if="${latestArticle}"
+            id="all-articles-jumbotron" class="jumbotron p-3 p-md-5 text-white rounded">
             <div class="col-md-6 px-0">
-                <h1 class="display-4 font-italic font-weight-bold">Title of the pinned article</h1>
+                <h1
+                    class="display-4 font-italic font-weight-bold"
+                    th:text="${latestArticle.title}">Title of the pinned article</h1>
                 <p class="lead mb-0"><a href="#" class="text-white font-weight-bold">Continue reading...</a></p>
             </div>
         </div>

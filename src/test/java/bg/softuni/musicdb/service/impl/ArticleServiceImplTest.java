@@ -7,7 +7,9 @@ import bg.softuni.musicdb.model.entities.UserEntity;
 import bg.softuni.musicdb.model.entities.enums.Genre;
 import bg.softuni.musicdb.model.view.ArticleViewModel;
 import bg.softuni.musicdb.repository.ArticleRepository;
+import bg.softuni.musicdb.repository.UserRepository;
 import java.util.List;
+import java.util.Optional;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -17,7 +19,7 @@ import org.mockito.junit.jupiter.MockitoExtension;
 import org.modelmapper.ModelMapper;
 
 @ExtendWith(MockitoExtension.class)
-public class ArticleServiceImplTest {
+class ArticleServiceImplTest {
 
   private UserEntity testUser1, testUser2;
   private ArticleEntity testArticleEntity1, testArticleEntity2;
@@ -27,6 +29,9 @@ public class ArticleServiceImplTest {
 
   @Mock
   ArticleRepository mockArticleRepository;
+
+  @Mock
+  UserRepository mockUserRepository;
 
   @BeforeEach
   public void init() {
@@ -51,13 +56,14 @@ public class ArticleServiceImplTest {
     testArticleEntity2.setContent("content 2");
     testArticleEntity2.setUserEntity(testUser2);
 
-    when(mockArticleRepository.findAll()).thenReturn(List.of(testArticleEntity1, testArticleEntity2));
-
-    serviceToTest = new ArticleServiceImpl(new ModelMapper(), mockArticleRepository);
+    serviceToTest = new ArticleServiceImpl(new ModelMapper(), mockArticleRepository, mockUserRepository);
   }
 
   @Test
   public void testFindAll() {
+
+    when(mockArticleRepository.findAll()).thenReturn(List.of(testArticleEntity1, testArticleEntity2));
+
     List<ArticleViewModel> allModels = serviceToTest.findAllArticles();
 
     Assertions.assertEquals(2, allModels.size());
@@ -79,4 +85,29 @@ public class ArticleServiceImplTest {
     Assertions.assertEquals(testArticleEntity2.getContent(), model2.getContent());
     Assertions.assertEquals(testUser2.getUsername(), model2.getAuthor());
   }
+
+  @Test
+  void testLatestArticle() {
+    when(mockArticleRepository.findTopByOrderByCreatedOnDesc()).thenReturn(Optional.of(testArticleEntity1));
+
+    Optional<ArticleViewModel> articleViewOpt = serviceToTest.findLatestArticle();
+
+    Assertions.assertTrue(articleViewOpt.isPresent());
+    ArticleViewModel actualModel = articleViewOpt.get();
+
+    Assertions.assertEquals(testArticleEntity1.getTitle(), actualModel.getTitle());
+    Assertions.assertEquals(testArticleEntity1.getContent(), actualModel.getContent());
+    // and so on...
+  }
+
+  @Test
+  void testLatestArticle_NotFound() {
+    when(mockArticleRepository.findTopByOrderByCreatedOnDesc()).thenReturn(Optional.empty());
+
+    Optional<ArticleViewModel> articleViewOpt = serviceToTest.findLatestArticle();
+
+    Assertions.assertTrue(articleViewOpt.isEmpty());
+  }
+
+  // TODO: create test for article creation.
 }

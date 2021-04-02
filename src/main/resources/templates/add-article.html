@@ -11,44 +11,73 @@
 <main class="p-5 bg-blur text-center">
     <h1 class="text-light border-bottom">Add Article</h1>
     <div class="d-flex justify-content-center">
-        <form action="/" method="" 
-              class="text-light">
+        <form
+            th:action="@{/articles/add}"
+            method="POST"
+            th:object="${articleAddBindingModel}"
+            class="text-light">
             <div class="form-row">
                 <div class="col">
                     <label for="title">Article title</label>
-                    <input id="title" type="text" class="form-control" placeholder="Title">
-                    <small id="titleError" class="form-text bg-danger rounded">Title must be between 3 and 20
+                    <input
+                        th:field="*{title}"
+                        th:errorclass="is-invalid"
+                        id="title"
+                        name="title"
+                        type="text"
+                        class="form-control"
+                        placeholder="Title">
+                    <small id="titleError" class="invalid-feedback form-text bg-danger rounded">Title must be between 3 and 20
                         characters</small>
                 </div>
             </div>
             <div class="form-row ">
                 <div class="col">
-                    <label for="imgUrl">Image Url</label>
-                    <input id="imgUrl" type="text" class="form-control" placeholder="Image Url">
-                    <small id="imageUrlError" class="form-text bg-danger rounded">Image url must be more than 5
+                    <label for="imageUrl">Image Url</label>
+                    <input th:field="*{imageUrl}"
+                           th:errorclass="is-invalid"
+                           name="imageUrl"
+                           id="imageUrl" type="text" class="form-control" placeholder="Image Url">
+                    <small id="imageUrlError" class="invalid-feedback form-text bg-danger rounded">Image url must be more than 5
                         characters</small>
                 </div>
             </div>
             <div class="form-row m-5">
                 <div class="col">
                     <label for="genre">Genre</label>
-                    <select id="genre" class="custom-select">
+                    <select
+                        th:field="*{genre}"
+                        th:errorclass="is-invalid"
+                        id="genre"
+                        name="genre" class="custom-select">
                         <option value="" selected>Select genre</option>
-                        <option>First genre</option>
+                        <option
+                            th:each="g : ${T(bg.softuni.musicdb.model.entities.enums.Genre).values()}"
+                            th:value="${g}"
+                            th:selected="${g} == *{genre}"
+                            th:text="${g}">Select genre</option>
                     </select>
-                    <small id="genreError" class="form-text bg-danger rounded">You must select genre</small>
+                    <small id="genreError" class="invalid-feedback form-text bg-danger rounded">You must select genre</small>
                 </div>
             </div>
 
             <div class="form-row">
                 <div class="col">
                     <label for="content">Text content</label>
-                    <textarea id="content" type="text" class="form-control" placeholder="Text content"></textarea>
-                    <small id="contentError" class="form-text bg-danger rounded">Text content length must be more than 5 characters</small>
+                    <textarea
+                        th:field="*{content}"
+                        th:errorclass="is-invalid"
+                        id="content"
+                        name="content"
+                        type="text"
+                        class="form-control"
+                        placeholder="Text content"></textarea>
+                    <small id="contentError" class="invalid-feedback form-text bg-danger rounded">Text content length must be more than 5 characters</small>
                 </div>
+
             </div>
             <div class="d-flex justify-content-center mt-4">
-                <button class="btn btn-primary btn-block w-50" type="submit">Add New Album</button>
+                <button class="btn btn-primary btn-block w-50" type="submit">Add New Article</button>
             </div>
         </form>
     </div>
