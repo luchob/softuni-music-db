@@ -89,6 +89,6 @@ public class AlbumControllerTest {
           with(csrf())).
         andExpect(status().is3xxRedirection());
 
-    Assertions.assertEquals(2, albumRepository.count());
+    Assertions.assertEquals(3, albumRepository.count());
   }
 }
